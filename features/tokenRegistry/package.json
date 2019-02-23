@@ -9,15 +9,27 @@
   "scripts": {
     "eth-deploy_daostack": "daostack-migrate base --provider 'http://127.0.0.1:9545' --mnemonic 'ivory sibling about kiwi grant sunset beauty solar cup fame south girl' --output 'migration.json'",
     "eth-start_dev": "truffle develop",
-    "eth-deploy_token_registry_dao": "truffle migrate --compile-all --reset --network development"
+    "eth-deploy_token_registry_dao": "truffle migrate --compile-all --reset --network development",
+    "generate-types": "truffle compile && typechain --target truffle './build/**/*.json'",
+    "test": "truffle test"
   },
   "author": "dOrg",
   "license": "ISC",
   "dependencies": {
     "@daostack/arc": "0.0.1-rc.9",
     "@daostack/migration": "0.0.1-rc.9-v1",
+    "@types/bignumber.js": "^5.0.0",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.9.5",
     "openzeppelin-solidity": "^2.1.2",
     "prettier": "^1.16.4",
-    "truffle": "^5.0.4"
+    "truffle": "^5.0.4",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.3.3333"
+  },
+  "devDependencies": {
+    "truffle-typings": "^1.0.6",
+    "typechain": "^0.3.11"
   }
 }

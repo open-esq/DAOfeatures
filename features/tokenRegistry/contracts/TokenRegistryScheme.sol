@@ -53,6 +53,11 @@ contract TokenRegistryScheme is UniversalScheme, VotingMachineCallbacks, Proposa
   // A mapping from the organization (Avatar) address to the token registry of the organization:
   mapping(address=>address[]) public organizationsTokenRegistry;
 
+  function getProposal(address avatar, bytes32 proposalId) public view returns (address, bool, uint) {
+    TokenProposal memory proposal = organizationsProposals[avatar][proposalId];
+    return (proposal.token, proposal.addToken, proposal.removeIndex);
+  }
+
   /**
     * @dev create a proposal to register a token
     * @param _avatar the address of the organization the token will be registered for

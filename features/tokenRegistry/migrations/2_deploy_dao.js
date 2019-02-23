@@ -1,3 +1,4 @@
+const readWriteFiles = require("../lib/readWriteFile")
 const migration = require("../migration.json")
 
 const Avatar = artifacts.require("@daostack/arc/Avatar.sol")
@@ -84,6 +85,12 @@ module.exports = async function(deployer) {
     paramsArray,
     permissionArray
   )
+
+  const dao = {
+    "Avatar": avatarInst.address,
+  }
+
+  readWriteFiles.storeData(dao, "tmp/dao.json")
 
   console.log("Avatar address: " + avatarInst.address)
   console.log("Your Token Registry DAO was deployed successfuly!")
