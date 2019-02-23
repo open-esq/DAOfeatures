@@ -2,13 +2,14 @@ pragma solidity >=0.4.21 <0.6.0;
 
 import "@daostack/arc/contracts/universalSchemes/UniversalScheme.sol";
 import "@daostack/arc/contracts/votingMachines/VotingMachineCallbacks.sol";
+import "./FeeCollector.sol";
 
 /**
  * @title A universal scheme for letting organizations manage a registrar of tokens
  * @dev The TokenRegistryScheme has a registry of tokens for each organization.
  *      The organizations can through a vote register and unregister tokens in the registry.
 */
-contract TokenRegistryScheme is UniversalScheme, VotingMachineCallbacks, ProposalExecuteInterface {
+contract TokenRegistryScheme is UniversalScheme, VotingMachineCallbacks, ProposalExecuteInterface, FeeCollector {
 
   event NewTokenProposal(
     address indexed _avatar,
@@ -64,6 +65,8 @@ contract TokenRegistryScheme is UniversalScheme, VotingMachineCallbacks, Proposa
     address _token
   )
   public
+  payable
+  paysFee
   returns(bytes32)
   {
     // propose
@@ -104,6 +107,8 @@ contract TokenRegistryScheme is UniversalScheme, VotingMachineCallbacks, Proposa
     */
   function proposeToRemoveToken(Avatar _avatar, uint _index) // TODO: is it good to pass only index?
   public
+  payable
+  paysFee
   returns(bytes32)
   {
     bytes32 paramsHash = getParametersFromController(_avatar);
