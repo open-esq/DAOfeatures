@@ -1,0 +1,22 @@
+{
+  "name": "tokenRegistry",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "eth-deploy_daostack": "daostack-migrate base --provider 'http://127.0.0.1:9545' --mnemonic 'ivory sibling about kiwi grant sunset beauty solar cup fame south girl' --output 'migration.json'",
+    "eth-start_dev": "truffle develop",
+    "eth-deploy_token_registry_dao": "truffle migrate --compile-all --reset --network development"
+  },
+  "author": "dOrg",
+  "license": "ISC",
+  "dependencies": {
+    "@daostack/arc": "0.0.1-rc.9",
+    "@daostack/migration": "0.0.1-rc.9-v1",
+    "prettier": "^1.16.4",
+    "truffle": "^5.0.4"
+  }
+}

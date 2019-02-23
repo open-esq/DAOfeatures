@@ -1,0 +1,23 @@
+{
+  "private": {
+    "base": {
+      "GEN": "0x2De97eB9931c4D3e6edBe2b95d573D59D17044e2",
+      "ControllerCreator": "0x6ED1B9C77931Cd80091b9e9b7A870ef2c2D7D080",
+      "DaoCreator": "0x14dbcC17394e4d9358d98ceA7d5ad89B9DDf70d0",
+      "UController": "0x3B9F9ba916927A4EC4f06c92A87320974AaE7846",
+      "GenesisProtocol": "0x3C4ccbD0afb3B93D3b863872A153D634aeBac24A",
+      "SchemeRegistrar": "0x1236F2787E787ba32Ebd0B22C547878c62A34614",
+      "UpgradeScheme": "0xf00A2fd5F5c43f4b8F48671d575b7Eb3A078b154",
+      "GlobalConstraintRegistrar": "0x8ACdA23Bb5f273103B1c92d6febcF0c7fbE44a7a",
+      "ContributionReward": "0xaDF66917bff2F72Fc250f05CAAe9cC596F7Db6E0",
+      "AbsoluteVote": "0xF9c9C8C046cca2708931b02dD32822462Bd72394",
+      "QuorumVote": "0xa0BB737001568b5713DFb19c6adCEFA4409F8F3D",
+      "TokenCapGC": "0xCE217c14e488d4207cB3197A1869915EA946bE10",
+      "VestingScheme": "0x333B5eE9db9B5d97A207A7F030749439203A47a4",
+      "VoteInOrganizationScheme": "0x15410c56354ee8FdE43EB7997A6bf715F0daAc06",
+      "OrganizationRegister": "0x8D202F93d18f14b37bEA24de7B3c63598d2998A1",
+      "Redeemer": "0xFb82936df8DD300eDd3Dcb0C2d11E2d7DD75E607",
+      "GenericScheme": "0xF549615c31EC71D8059D3B08ed68ce355FDEE5d8"
+    }
+  }
+}
