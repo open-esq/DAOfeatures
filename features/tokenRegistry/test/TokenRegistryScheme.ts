@@ -10,12 +10,20 @@ contract("Token Registry test", async accounts => {
     console.log("Avatar address: " + avatar)
     let instance = await TokenRegistry.deployed()
     console.log("TokenRegistry address: " + instance.address)
-    let proposalId = await instance.proposeToken(avatar, token, {
+    let test1 = await instance.proposeToken(avatar, token, {
       from: sender,
       gas: "6700000",
       value: "6700001",
     })
-    console.log("proposalId: " + proposalId)
+    //let res = await instance.proposeToken(avatar, token, {
+    //  from: sender,
+    //})
+    //let proposalId = await instance.proposeToken(avatar, token, {
+    //  from: sender,
+    //  gas: "6700000",
+    //  value: "6700001",
+    //})
+    console.log("test1: " + JSON.stringify(test1))
     //instance.getProposal(avatar, proposalId)
     assert.equal(true, true)
   })

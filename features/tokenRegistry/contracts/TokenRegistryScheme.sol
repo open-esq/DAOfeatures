@@ -2,6 +2,8 @@ pragma solidity >=0.4.21 <0.6.0;
 
 import "@daostack/arc/contracts/universalSchemes/UniversalScheme.sol";
 import "@daostack/arc/contracts/votingMachines/VotingMachineCallbacks.sol";
+import "@daostack/infra/contracts/votingMachines/IntVoteInterface.sol";
+import "@daostack/infra/contracts/votingMachines/VotingMachineCallbacksInterface.sol";
 import "./FeeCollector.sol";
 
 /**
@@ -10,6 +12,10 @@ import "./FeeCollector.sol";
  *      The organizations can through a vote register and unregister tokens in the registry.
 */
 contract TokenRegistryScheme is UniversalScheme, VotingMachineCallbacks, ProposalExecuteInterface, FeeCollector {
+
+  event TestEV(
+               bool _is
+               );
 
   event NewTokenProposal(
     address indexed _avatar,
@@ -58,6 +64,35 @@ contract TokenRegistryScheme is UniversalScheme, VotingMachineCallbacks, Proposa
     return (proposal.token, proposal.addToken, proposal.removeIndex);
   }
 
+  function test1(Avatar _avatar) public payable returns (uint) {
+    return 100 + msg.value;
+  }
+
+  /**
+   * @dev hash the parameters, save them if necessary, and return the hash value
+   */
+  function setParameters(
+                         bytes32 _voteRegisterParams,
+                         bytes32 _voteRemoveParams,
+                         IntVoteInterface _intVote
+                         ) public returns(bytes32)
+  {
+    bytes32 paramsHash = getParametersHash(_voteRegisterParams, _voteRemoveParams, _intVote);
+    parameters[paramsHash].voteRegisterParams = _voteRegisterParams;
+    parameters[paramsHash].voteRemoveParams = _voteRemoveParams;
+    parameters[paramsHash].intVote = _intVote;
+    return paramsHash;
+}
+
+  function getParametersHash(
+                             bytes32 _voteRegisterParams,
+                             bytes32 _voteRemoveParams,
+                             IntVoteInterface _intVote
+                             ) public pure returns(bytes32)
+  {
+    return keccak256(abi.encodePacked(_voteRegisterParams, _voteRemoveParams, _intVote));
+  }
+
   /**
     * @dev create a proposal to register a token
     * @param _avatar the address of the organization the token will be registered for
@@ -71,36 +106,38 @@ contract TokenRegistryScheme is UniversalScheme, VotingMachineCallbacks, Proposa
   )
   public
   payable
-  paysFee
   returns(bytes32)
   {
+    emit TestEV(true);
     // propose
     require(_token != address(0), "token cannot be the zero address");
     Parameters memory controllerParams = parameters[getParametersFromController(_avatar)];
 
-    bytes32 proposalId = controllerParams.intVote.propose(
+    controllerParams.intVote.propose(
       2,
       controllerParams.voteRegisterParams,
       msg.sender,
       address(_avatar)
     );
 
+    bytes32 proposalId = "hei";
+
     TokenProposal memory proposal = TokenProposal({
       token: _token,
       addToken: true,
       removeIndex: 0 // TODO: fix
     });
-    emit NewTokenProposal(
-      address(_avatar),
-      proposalId,
-      address(controllerParams.intVote),
-      _token
-    );
+    //emit NewTokenProposal(
+    //  address(_avatar),
+    //  proposalId,
+    //  address(controllerParams.intVote),
+    //  _token
+    //);
     organizationsProposals[address(_avatar)][proposalId] = proposal;
-    proposalsInfo[address(controllerParams.intVote)][proposalId] = ProposalInfo({
-      blockNumber:block.number,
-      avatar:_avatar
-    });
+    //proposalsInfo[address(controllerParams.intVote)][proposalId] = ProposalInfo({
+    //  blockNumber:block.number,
+    //  avatar:_avatar
+    //});
     return proposalId;
   }
 

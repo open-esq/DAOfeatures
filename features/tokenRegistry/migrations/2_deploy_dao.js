@@ -4,6 +4,8 @@ const migration = require("../migration.json")
 const Avatar = artifacts.require("@daostack/arc/Avatar.sol")
 const Controller = artifacts.require("@daostack/arc/Controller.sol")
 const DaoCreator = artifacts.require("@daostack/arc/DaoCreator.sol")
+const AbsoluteVote = artifacts.require("@daostack/arc/AbsoluteVote.sol")
+
 const TokenRegistryScheme = artifacts.require(
   "../contracts/TokenRegistryScheme.sol"
 )
@@ -18,6 +20,8 @@ const foundersRep = [10]
 const GAS_LIMIT = 5900000
 const NULL_HASH =
   "0x0000000000000000000000000000000000000000000000000000000000000000"
+const NULL_ADDRESS = "0x0000000000000000000000000000000000000000"
+const votePrec = 50
 
 module.exports = async function(deployer) {
   console.log("start")
@@ -42,6 +46,10 @@ module.exports = async function(deployer) {
     migration[networkId].base.DaoCreator
   )
 
+  const absoluteVoteInst = await AbsoluteVote.at(
+    migration[networkId].base.AbsoluteVote
+  )
+
   // Create DAO:
   const returnedParams = await daoCreatorInst.forgeOrg(
     orgName,
@@ -57,6 +65,7 @@ module.exports = async function(deployer) {
 
   const avatarInst = await Avatar.at(returnedParams.logs[0].args._avatar)
 
+  console.log("here1")
   await deployer.deploy(
     TokenRegistryScheme,
     avatarInst.address,
@@ -66,15 +75,40 @@ module.exports = async function(deployer) {
     500,
     50
   )
+  console.log("here2")
 
   const tokenRegistrySchemeAddress = (await TokenRegistryScheme.deployed())
     .address
 
+  console.log("here3")
   const tokenRegistryInstance = await TokenRegistryScheme.deployed()
 
+  console.log("here4")
+  // Voting parameters and schemes params:
+  var voteParametersHash = await absoluteVoteInst.getParametersHash(
+    votePrec,
+    NULL_ADDRESS
+  )
+
+  await tokenRegistryInstance.setParameters(
+    voteParametersHash,
+    voteParametersHash,
+    absoluteVoteInst.address
+  )
+
+  const tokenRegisterParams = await tokenRegistryInstance.getParametersHash(
+    voteParametersHash,
+    voteParametersHash,
+    absoluteVoteInst.address
+  )
+
+  console.log("avatarInst.address: " + avatarInst.address)
+  console.log("tokenRegistryInstance.address: " + tokenRegistryInstance.address)
+  console.log("tokenRegisterParams: " + tokenRegisterParams)
+
   const schemesArray = [tokenRegistryInstance.address]
-  const paramsArray = [NULL_HASH]
-  const permissionArray = ["0x00000000"]
+  const paramsArray = [tokenRegisterParams]
+  const permissionArray = ["0x0000001F"]
 
   console.log("OWNER " + (await avatarInst.owner.call()))
 
@@ -83,11 +117,13 @@ module.exports = async function(deployer) {
     avatarInst.address,
     schemesArray,
     paramsArray,
-    permissionArray
+    permissionArray,
+    "metaData"
   )
+  console.log("schemes set")
 
   const dao = {
-    "Avatar": avatarInst.address,
+    Avatar: avatarInst.address,
   }
 
   readWriteFiles.storeData(dao, "tmp/dao.json")

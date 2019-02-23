@@ -1,6 +1,6 @@
-const fs = require('fs')
+const fs = require("fs")
 
-export const storeData = (data, path) => {
+const storeData = (data, path) => {
   try {
     fs.writeFileSync(path, JSON.stringify(data))
   } catch (err) {
@@ -8,12 +8,16 @@ export const storeData = (data, path) => {
   }
 }
 
-export const loadData = (path) => {
-    try {
-      return fs.readFileSync(path, 'utf8')
-    } catch (err) {
-      console.error(err)
-      return false
-    }
+const loadData = path => {
+  try {
+    return fs.readFileSync(path, "utf8")
+  } catch (err) {
+    console.error(err)
+    return false
   }
-  
+}
+
+module.exports = {
+  storeData,
+  loadData,
+}

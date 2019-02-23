@@ -16,8 +16,8 @@
   "author": "dOrg",
   "license": "ISC",
   "dependencies": {
-    "@daostack/arc": "0.0.1-rc.9",
-    "@daostack/migration": "0.0.1-rc.9-v1",
+    "@daostack/arc": "0.0.1-rc.11",
+    "@daostack/migration": "0.0.1-rc.9-v2",
     "@types/bignumber.js": "^5.0.0",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",
