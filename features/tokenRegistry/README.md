@@ -1,4 +1,4 @@
-# Experimental WIP for a Token Registry DAO
+# Experimental WIP for a Token Registry Feature
 
 ## Setup
 1. `npm install`
