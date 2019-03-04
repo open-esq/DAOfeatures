@@ -10,6 +10,8 @@
     "eth-deploy_daostack": "daostack-migrate base --provider 'http://127.0.0.1:9545' --mnemonic 'ivory sibling about kiwi grant sunset beauty solar cup fame south girl' --output 'migration.json'",
     "eth-start_dev": "truffle develop",
     "eth-deploy_token_registry_dao": "truffle migrate --compile-all --reset --network development",
+    "eth-lint:watch": "solium -d contracts/ --watch",
+    "eth-lint": "solium -d contracts/ --fix",
     "generate-types": "truffle compile && typechain --target truffle './build/**/*.json'",
     "test": "truffle test"
   },
@@ -24,11 +26,12 @@
     "@types/node": "^11.9.5",
     "openzeppelin-solidity": "^2.1.2",
     "prettier": "^1.16.4",
-    "truffle": "^5.0.4",
+    "truffle": "^5.0.6",
     "ts-node": "^8.0.2",
     "typescript": "^3.3.3333"
   },
   "devDependencies": {
+    "ethlint": "^1.2.3",
     "truffle-typings": "^1.0.6",
     "typechain": "^0.3.11"
   }

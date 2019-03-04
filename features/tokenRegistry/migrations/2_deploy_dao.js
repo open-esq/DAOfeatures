@@ -117,8 +117,7 @@ module.exports = async function(deployer) {
     avatarInst.address,
     schemesArray,
     paramsArray,
-    permissionArray,
-    "metaData"
+    permissionArray
   )
   console.log("schemes set")
 
