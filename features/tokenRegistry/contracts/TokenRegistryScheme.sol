@@ -13,8 +13,6 @@ import "./FeeCollector.sol";
 */
 contract TokenRegistryScheme is UniversalScheme, VotingMachineCallbacks, ProposalExecuteInterface, FeeCollector {
 
-  event TestEV(bool _is);
-
   event NewTokenProposal(
     address indexed _avatar,
     bytes32 indexed _proposalId,
@@ -102,12 +100,11 @@ contract TokenRegistryScheme is UniversalScheme, VotingMachineCallbacks, Proposa
   payable
   returns(bytes32)
   {
-    emit TestEV(true);
     // propose
     require(_token != address(0), "token cannot be the zero address");
     Parameters memory controllerParams = parameters[getParametersFromController(_avatar)];
 
-    bytes32 proposalId =  controllerParams.intVote.propose(
+    bytes32 proposalId = controllerParams.intVote.propose(
       2,
       controllerParams.voteRegisterParams,
       msg.sender,
