@@ -19,12 +19,11 @@ contract("Token Registry test", async accounts => {
     const tokenRegInstance = await TokenRegistry.deployed()
     const sender = accounts[0]
     console.log("Avatar address: " + avatar)
-    const proposalId = await tokenRegInstance.proposeToken(avatar, token, {
+    const tx = await tokenRegInstance.proposeToken(avatar, token, {
       from: sender,
       gas: "6700000",
       value: "6700001",
     })
-    assert.isNotNull(proposalId)
-    //instance.getProposal(avatar, proposalId)
+    assert.isNotNull(tx)
   })
 })

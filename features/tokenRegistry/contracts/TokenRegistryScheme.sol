@@ -97,6 +97,7 @@ contract TokenRegistryScheme is UniversalScheme, VotingMachineCallbacks, Proposa
     address _token
   )
   public
+  paysFee
   payable
   returns(bytes32)
   {
