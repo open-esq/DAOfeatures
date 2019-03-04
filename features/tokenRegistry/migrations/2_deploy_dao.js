@@ -89,14 +89,14 @@ module.exports = async function(deployer) {
     absoluteVoteInst.address
   )
 
-  const tokenRegisterParams = await tokenRegistryInstance.getParametersHash(
+  const tokenRegisterParamsHash = await tokenRegistryInstance.getParametersHash(
     voteParametersHash,
     voteParametersHash,
     absoluteVoteInst.address
   )
 
   const schemesArray = [tokenRegistryInstance.address]
-  const paramsArray = [tokenRegisterParams]
+  const paramsArray = [tokenRegisterParamsHash]
   const permissionArray = ["0x0000001F"]
 
   console.log("OWNER " + (await avatarInst.owner.call()))
@@ -110,7 +110,8 @@ module.exports = async function(deployer) {
   )
 
   const dao = {
-    Avatar: avatarInst.address,
+    avatar: avatarInst.address,
+    tokenRegisterParamsHash,
   }
 
   readWriteFiles.storeData(dao, "tmp/dao.json")
