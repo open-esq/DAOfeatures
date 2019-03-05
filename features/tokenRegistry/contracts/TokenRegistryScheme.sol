@@ -105,6 +105,7 @@ contract TokenRegistryScheme is UniversalScheme, VotingMachineCallbacks, Proposa
     require(_token != address(0), "token cannot be the zero address");
     Parameters memory controllerParams = parameters[getParametersFromController(_avatar)];
 
+    // TODO: this fails
     bytes32 proposalId = controllerParams.intVote.propose(
       2,
       controllerParams.voteRegisterParams,
