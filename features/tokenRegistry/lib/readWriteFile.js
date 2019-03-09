@@ -1,8 +1,14 @@
 const fs = require("fs")
+const path = require("path")
 
-const storeData = (data, path) => {
+const storeData = (data, file) => {
   try {
-    fs.writeFileSync(path, JSON.stringify(data))
+    const directory = path.dirname(file)
+    if (!fs.existsSync(directory)) {
+      fs.mkdirSync(path.dirname(file))
+    }
+
+    fs.writeFileSync(file, JSON.stringify(data), { flag: "w" })
   } catch (err) {
     console.error(err)
   }

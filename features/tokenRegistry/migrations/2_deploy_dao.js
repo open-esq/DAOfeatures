@@ -123,7 +123,7 @@ module.exports = async function(deployer) {
     tokenRegisterParamsHash,
   }
 
-  readWriteFiles.storeData(dao, "tmp/dao.json")
+  readWriteFiles.storeData(dao, ".daostack/dao.json")
 
   console.log("Avatar address: " + avatarInst.address)
   console.log("Your Token Registry DAO was deployed successfuly!")

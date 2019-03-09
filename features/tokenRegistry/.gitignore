@@ -5,3 +5,4 @@ build/
 types
 
 ganache-accounts.json
+.daostack

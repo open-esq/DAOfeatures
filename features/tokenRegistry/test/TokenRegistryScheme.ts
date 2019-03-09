@@ -1,5 +1,5 @@
 const migration = require("../migration.json")
-const DaoJson = require("../tmp/dao.json")
+const DaoJson = require("../.daostack/dao.json")
 const TokenRegistry = artifacts.require("TokenRegistryScheme")
 
 const networkId = "private"

@@ -7,15 +7,16 @@
     "test": "test"
   },
   "scripts": {
-    "start": "concurrently 'npm run eth-ganache:start' 'wait-on tcp:9545 && npm run eth-deploy:daostack && npm run eth-deploy:token-registry-dao'",
-    "eth-deploy:daostack": "daostack-migrate base --provider 'http://127.0.0.1:9545' --mnemonic 'ivory sibling about kiwi grant sunset beauty solar cup fame south girl' --output 'migration.json' --force",
-    "eth-deploy:token-registry-dao": "truffle migrate --compile-all --reset --network development",
-    "eth-truffle:develop": "truffle develop",
-    "eth-lint:watch": "solium -d contracts/ --watch",
-    "eth-lint": "solium -d contracts/ --fix",
-    "eth-ganache:start": "ganache-cli -p 9545 -d --gasLimit 7000000000000 --gasPrice 1 --acctKeys ./ganache-accounts.json -m 'ivory sibling about kiwi grant sunset beauty solar cup fame south girl'",
-    "generate-types": "truffle compile && typechain --target truffle './build/**/*.json'",
-    "test": "truffle test"
+    "start": "concurrently 'npm:start:ganache' 'npm:deploy:contracts'",
+    "start:ganache": "ganache-cli -p 9545 -d --gasLimit 7000000000000 --gasPrice 1 --acctKeys ./ganache-accounts.json -m 'ivory sibling about kiwi grant sunset beauty solar cup fame south girl'",
+    "deploy:contracts": "npm run deploy:daostack && npm run deploy:feature",
+    "deploy:daostack": "wait-on tcp:9545 && daostack-migrate base --provider 'http://127.0.0.1:9545' --mnemonic 'ivory sibling about kiwi grant sunset beauty solar cup fame south girl' --output 'migration.json' --force",
+    "deploy:feature": "truffle migrate --compile-all --reset --network development",
+    "truffle:develop": "truffle develop",
+    "truffle:test": "truffle test",
+    "lint:watch": "solium -d contracts/ --watch",
+    "lint": "solium -d contracts/ --fix",
+    "generate-types": "truffle compile && typechain --target truffle './build/**/*.json'"
   },
   "author": "dOrg",
   "license": "ISC",
