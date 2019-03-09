@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "concurrently 'npm:start:ganache' 'npm:deploy:contracts'",
-    "start:ganache": "ganache-cli -p 9545 -d --gasLimit 7000000000000 --gasPrice 1 --acctKeys ./ganache-accounts.json -m 'ivory sibling about kiwi grant sunset beauty solar cup fame south girl'",
+    "start:ganache": "mkdir -p .chain && ganache-cli -p 9545 -d --gasLimit 7000000000000 --gasPrice 1 --acctKeys ./.chain/ganache-accounts.json -m 'ivory sibling about kiwi grant sunset beauty solar cup fame south girl'",
     "deploy:contracts": "npm run deploy:daostack && npm run deploy:feature",
     "deploy:daostack": "wait-on tcp:9545 && daostack-migrate base --provider 'http://127.0.0.1:9545' --mnemonic 'ivory sibling about kiwi grant sunset beauty solar cup fame south girl' --output 'migration.json' --force",
     "deploy:feature": "truffle migrate --compile-all --reset --network development",
