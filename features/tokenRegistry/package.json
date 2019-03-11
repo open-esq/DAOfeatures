@@ -22,24 +22,24 @@
   "license": "ISC",
   "dependencies": {
     "@daostack/arc": "0.0.1-rc.12",
-    "@daostack/migration": "0.0.1-rc.12-v3",
+    "openzeppelin-solidity": "^2.1.2",
+    "truffle": "^5.0.6",
+    "truffle-contract": "^4.0.8"
+  },
+  "devDependencies": {
     "@types/bignumber.js": "^5.0.0",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",
     "@types/node": "^11.9.5",
-    "openzeppelin-solidity": "^2.1.2",
-    "prettier": "^1.16.4",
-    "truffle": "^5.0.6",
-    "truffle-contract": "^4.0.8",
-    "ts-node": "^8.0.2",
-    "typescript": "^3.3.3333"
-  },
-  "devDependencies": {
+    "@daostack/migration": "0.0.1-rc.12-v3",
     "concurrently": "^4.1.0",
+    "prettier": "^1.16.4",
     "ethlint": "^1.2.3",
     "ganache-cli": "^6.4.1",
     "truffle-typings": "^1.0.6",
     "typechain": "^0.3.11",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.3.3333",
     "wait-on": "^3.2.0"
   }
 }
