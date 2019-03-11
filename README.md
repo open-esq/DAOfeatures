@@ -1,7 +1,7 @@
 # DAOfeatures
 Features that can be easily added to a DAOstack DAO.
 
-In the future, it will be possible to browse a registry of DAOfeatures, where it will be a one-click operation to propose to add a feature to a DAO.
+In the future, it will be possible to browse a registry of DAOfeatures, where it will be a one-click operation for proposing to add a feature to a DAO.
 
 *A DAOfeature consists of a universal scheme (on chain) and a user interface (on IPFS) for interaction with that scheme.*
 
