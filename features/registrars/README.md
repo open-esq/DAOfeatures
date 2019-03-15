@@ -1,4 +1,4 @@
-# Experimental WIP for a Token Registry Feature
+# Experimental WIP for a multiple Registry Features
 
 ## Setup
 
