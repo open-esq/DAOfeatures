@@ -1,0 +1,45 @@
+{
+  "name": "simpleTBC",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "concurrently 'npm:start:ganache' 'npm:deploy:contracts'",
+    "start:ganache": "mkdir -p .chain && ganache-cli -p 9545 -d --gasLimit 7000000000000 --gasPrice 1 --acctKeys ./.chain/ganache-accounts.json -m 'ivory sibling about kiwi grant sunset beauty solar cup fame south girl'",
+    "deploy:contracts": "npm run deploy:daostack && npm run deploy:feature",
+    "deploy:daostack": "wait-on tcp:9545 && daostack-migrate base --provider 'http://127.0.0.1:9545' --mnemonic 'ivory sibling about kiwi grant sunset beauty solar cup fame south girl' --output 'migration.json' --force",
+    "deploy:feature": "truffle migrate --compile-all --reset --network development",
+    "truffle:develop": "truffle develop",
+    "truffle:test": "truffle test",
+    "lint:watch": "solium -d contracts/ --watch",
+    "lint": "solium -d contracts/ --fix",
+    "generate-types": "truffle compile && typechain --target truffle './build/**/*.json'"
+  },
+  "author": "dOrg",
+  "license": "ISC",
+  "dependencies": {
+    "@daostack/arc": "0.0.1-rc.12",
+    "openzeppelin-solidity": "^2.1.2",
+    "truffle": "^5.0.6",
+    "truffle-contract": "^4.0.8"
+  },
+  "devDependencies": {
+    "@types/bignumber.js": "^5.0.0",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.9.5",
+    "@daostack/migration": "0.0.1-rc.12-v3",
+    "concurrently": "^4.1.0",
+    "prettier": "^1.16.4",
+    "ethlint": "^1.2.3",
+    "ganache-cli": "^6.4.1",
+    "truffle-typings": "^1.0.6",
+    "typechain": "^0.3.11",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.3.3333",
+    "wait-on": "^3.2.0"
+  }
+}
