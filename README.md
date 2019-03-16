@@ -1,13 +1,12 @@
 # DAOfeatures
-Features that can be easily added to a DAOstack DAO.
+*Features that can be easily added to a DAOstack DAO.*
 
-*A DAOfeature consists of a universal scheme (on chain) and a user interface (on IPFS) for interaction with that scheme.*
+## DAOfeature
+At its core, a DAOfeature is a scheme that inherits from the DAOfeature abstract contract. The DAOfeature contract consists of things like the UI management and a set of common view functions that can be used for analytics and displaying stuff in the UI, etc.).
 
-## DAOfeature Lib (EthPm) consists of: 
-- Core DAOfeature contract to enherite from when creating DAOfeatures (some common functionality used by the DAOfeatureRegistry ++)
-- Optional functionality like:
+## DAOfeatrue Extensions
+Optional functionality like:
   - **Fee collection:** A DAOfeature owner can optionally collect fees for usage of a DAOfeature (microtransactions) - [FeeCollector.sol](https://github.com/dOrgTech/DAOfeatures/blob/master/features/tokenRegistry/contracts/FeeCollector.sol)
-  - **User interface:** A DAOfuture owner can publish new versions of a DAOfeature UI. If a DAO wants to update to a new version of the UI, somebody has to propose the update, and it will be voted on - [UserInterface.sol](https://github.com/dOrgTech/DAOfeatures/blob/master/features/tokenRegistry/contracts/UserInterface.sol)
 
 ## DAOfeature Hub 
 Functionality:
@@ -20,7 +19,7 @@ Functionality:
   2. All DAOfeatures that are registered for that DAO will be listed. Click one of the features to open the UI for that feature.
   3. Interact with the UI (for instance proposing something for the DAO to do).
 
-## DAOfeature Starter
+## DAOfeature Starter (a Truffle Box?)
 A starter project with a small example for creating DAOfeatures. Might turn partly into an NPM package later.
 
 Example use cases:
