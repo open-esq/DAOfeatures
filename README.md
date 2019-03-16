@@ -2,11 +2,11 @@
 *Features that can be easily added to a DAOstack DAO.*
 
 ## DAOfeature
-At its core, a DAOfeature is a scheme that inherits from the DAOfeature abstract contract. The DAOfeature contract consists of things like the UI management and a set of common view functions that can be used for analytics and displaying stuff in the UI, etc.).
+At its core, a DAOfeature is a scheme that inherits from the DAOfeature abstract contract. The DAOfeature contract consists of things like [UI management](https://github.com/dOrgTech/DAOfeatures/blob/master/features/registrars/contracts/UserInterface.sol) and a set of common view functions that can be used for analytics, discoverability and displaying stuff in the UI, etc.).
 
 ## DAOfeatrue Extensions
 Optional functionality like:
-  - **Fee collection:** A DAOfeature owner can optionally collect fees for usage of a DAOfeature (microtransactions) - [FeeCollector.sol](https://github.com/dOrgTech/DAOfeatures/blob/master/features/tokenRegistry/contracts/FeeCollector.sol)
+  - **Fee collection:** A DAOfeature owner can optionally collect fees for usage of a DAOfeature (microtransactions) - [FeeCollector.sol](https://github.com/dOrgTech/DAOfeatures/blob/master/features/registrars/contracts/FeeCollector.sol)
 
 ## DAOfeature Hub 
 Functionality:
